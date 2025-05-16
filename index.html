@@ -83,7 +83,55 @@ ymodel=lsim(L,M,u,t);
 plot(t,y,t,ymodel),grid;
 %plot(t,y-ymodel),grid;
 
-łukasz:
+      *** t_raw=out.ScopeData.time;
+u_raw=out.ScopeData.signals(1).values;
+y_raw=out.ScopeData.signals(2).values;
+
+plot(t_raw,u_raw,t_raw,y_raw);grid
+legend('u','y')
+
+n=find(u_raw>0.5);
+N=n(1);
+t=t_raw(N:end)-t_raw(N);
+u=u_raw(N:end)-u_raw(N-1);
+y=y_raw(N:end)-y_raw(N);
+
+plot(t,u,t,y);grid
+legend('u','y')
+
+%G(s)=H(s)/Qwe(s)=k/(T*s+1)*exp(-tau*s)
+
+yu=y(end);
+uu=u(end);
+k=yu/uu;
+
+n10=find(y<0.1*yu);
+n10=n10(end);
+t10=t(n10);
+
+n90=find(y<0.9*yu);
+n90=n90(end);
+t90=t(n90);
+
+T=(t90-t10)/2.2
+tau=t10-(0.1*T);
+
+%Sprawdzenie modelu
+
+L=k;
+M=[T 1]
+[Lp Mp]=pade(tau,12);
+
+L=conv(L,Lp);
+M=conv(M,Mp);
+
+ymodel=lsim(L,M,u,t);
+plot(t,y,'r*',t,ymodel,'b-');grid
+
+plot(t,y-ymodel);grid
+
+      
+****łukasz:
 te=out.ScopeData.time;
 ue=out.ScopeData.signals(1).values;
 ye=out.ScopeData.signals(2).values;
