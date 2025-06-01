@@ -35,6 +35,45 @@
   <div class="box">
     <h1>sprawozdania</h1>
     <textarea id="tekst" readonly>
+
+
+      Zadanie A – Wiersz poleceń Windows
+U:
+cd \
+mkdir zal3
+cd zal3
+mkdir inf
+mkdir test
+cd inf
+copy c:\windows\inf\s*.inf .
+dir *.inf > ..\test\lista.txt
+cd \
+rmdir /s /q zal3
+ipconfig /all
+ping onet.pl -n 7
+
+
+Zadanie B – Wiersz poleceń Linux (Unix)
+mkdir -p zaliczenie3/Internet
+mkdir -p zaliczenie3/pliki\ prywatne
+date > zaliczenie3/pliki\ prywatne/data
+cp zaliczenie3/pliki\ prywatne/data zaliczenie3/Internet/
+cd ~
+traceroute wp.pl
+df -h
+rm -r zaliczenie3
+exit
+
+
+Zadanie C – Matlab / Octave
+t = 0:0.01:4*pi;
+f = -4*sin(t - pi/4) + 2*sin(4*t) + 0.5*sin(8*t);
+plot(t, f);
+title('Zaliczenie z TI');
+xlabel('Czas');
+ylabel('Wartość funkcji');
+grid on;
+      
   te = out.ScopeData.time;
 ue = out.ScopeData.signals(1).values;
 ye = out.ScopeData.signals(2).values;
