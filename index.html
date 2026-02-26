@@ -1,222 +1,119 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>automatyka.kia</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f9f9f9;
-    }
-    .box {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      height: 150px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>automatyka.kia</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+}
+
+/* ===== Zdjęcie u góry ===== */
+.header-image {
+  width: 100%;
+  height: 300px;
+  background-image: url("TUTAJ_WSTAW_LINK_DO_ZDJECIA_LUB_NAZWE_PLIKU.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* ===== Główna sekcja ===== */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  display: flex;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+/* ===== Kolumny ===== */
+.column {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* ===== Tekst do kopiowania ===== */
+textarea {
+  width: 100%;
+  height: 250px;
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  font-size: 14px;
+  background-color: #2e59d9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1c3faa;
+}
+
+/* ===== Responsywność (telefon) ===== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="box">
-    <h1>sprawozdania</h1>
+
+<!-- ===== ZDJĘCIE NA GÓRZE ===== -->
+<div class="header-image"></div>
+
+<!-- ===== DWIE KOLUMNY ===== -->
+<div class="container">
+
+  <!-- LEWA KOLUMNA -->
+  <div class="column">
+    <h2>Tekst do skopiowania</h2>
+
     <textarea id="tekst" readonly>
 
+TUTAJ_WKLEJ_SWÓJ_TEKST_DO_SKOPIOWANIA
+      jakjiś napewno skopiuje
 
-      Zadanie A – Wiersz poleceń Windows
-U:
-cd \
-mkdir zal3
-cd zal3
-mkdir inf
-mkdir test
-cd inf
-copy c:\windows\inf\s*.inf .
-dir *.inf > ..\test\lista.txt
-cd \
-rmdir /s /q zal3
-ipconfig /all
-ping onet.pl -n 7
-
-
-Zadanie B – Wiersz poleceń Linux (Unix)
-mkdir -p zaliczenie3/Internet
-mkdir -p zaliczenie3/pliki\ prywatne
-date > zaliczenie3/pliki\ prywatne/data
-cp zaliczenie3/pliki\ prywatne/data zaliczenie3/Internet/
-cd ~
-traceroute wp.pl
-df -h
-rm -r zaliczenie3
-exit
-
-
-Zadanie C – Matlab / Octave
-t = 0:0.01:4*pi;
-f = -4*sin(t - pi/4) + 2*sin(4*t) + 0.5*sin(8*t);
-plot(t, f);
-title('Zaliczenie z TI');
-xlabel('Czas');
-ylabel('Wartość funkcji');
-grid on;
-      
-  te = out.ScopeData.time;
-ue = out.ScopeData.signals(1).values;
-ye = out.ScopeData.signals(2).values;
-
-plot (te, ye, te, ue,'g'), grid;
-
-n=find(te<=1500);
-ns=max(n);
-
-t = te(ns:end)-te(ns);
-u = ue(ns:end)-ue(ns-1);
-y = ye(ns:end)-ye(ns);
-
-plot(t, y, t, u),grid;
-
-uu=u(end);
-yu=y(end);
-
-n10=max(find(y<=yu*0.1));
-t10=t(n10);
-y10=y(n10);
-
-n90=max(find(y<=yu*0.9));
-t90=t(n90);
-y90=y(n90);
-
-plot(t, y, t10, y10,'*', t90, y90,'*'),grid;
-legend ty t10y10 t90y90;
-
-T=(t90-t10)/2.2;
-tau=t10-(0.1*T);
-k=yu/uu;
-
-[Lp Mp]=pade(tau,12);
-L=k;
-M=[T 1];
-%G(s)=21.37/(153.6s+1)*e^27.64
-
-kp=0.34*(T/(k*tau));
-Ti=T;
-ki=kp/Ti;
-
-L=conv(Lp,L);
-M=conv(Mp,M);
-ymodel=lsim(L,M,u,t);
-plot(t,y,t,ymodel),grid;
-%plot(t,y-ymodel),grid;
-
-      *** t_raw=out.ScopeData.time;
-u_raw=out.ScopeData.signals(1).values;
-y_raw=out.ScopeData.signals(2).values;
-
-plot(t_raw,u_raw,t_raw,y_raw);grid
-legend('u','y')
-
-n=find(u_raw>0.5);
-N=n(1);
-t=t_raw(N:end)-t_raw(N);
-u=u_raw(N:end)-u_raw(N-1);
-y=y_raw(N:end)-y_raw(N);
-
-plot(t,u,t,y);grid
-legend('u','y')
-
-%G(s)=H(s)/Qwe(s)=k/(T*s+1)*exp(-tau*s)
-
-yu=y(end);
-uu=u(end);
-k=yu/uu;
-
-n10=find(y<0.1*yu);
-n10=n10(end);
-t10=t(n10);
-
-n90=find(y<0.9*yu);
-n90=n90(end);
-t90=t(n90);
-
-T=(t90-t10)/2.2
-tau=t10-(0.1*T);
-
-%Sprawdzenie modelu
-
-L=k;
-M=[T 1]
-[Lp Mp]=pade(tau,12);
-
-L=conv(L,Lp);
-M=conv(M,Mp);
-
-ymodel=lsim(L,M,u,t);
-plot(t,y,'r*',t,ymodel,'b-');grid
-
-plot(t,y-ymodel);grid
-
-      
-****łukasz:
-te=out.ScopeData.time;
-ue=out.ScopeData.signals(1).values;
-ye=out.ScopeData.signals(2).values;
-plot(te,ue,te,ye);
-n=find(te<=1500);
-ns=max(n);
-t=te(ns:end)-te(ns);
-u=ue(ns:end)-ue(ns-1);
-y=ye(ns:end)-ye(ns);
-plot(t,u,t,y);
-uu=u(end);
-yu=y(end);
-n10=max(find(y<=yu*0.1));
-t10=t(n10);
-y10=y(n10);
-n90=max(find(y<=yu*0.9));
-t90=t(n90);
-y90=y(n90);
-plot(t,y,t10,y10,'*',t90,y90,'*');
-k=yu/uu;
-T=(t90-t10)/2.2;
-tau=t10-(0.1*T);
-L=k;
-M=[T 1];
-[Lp Mp]=pade(tau,12);
-L=conv(L,Lp);
-M=conv(M,Mp);
-ymodel=lsim(L,M,u,t);
-plot(t,y,t,ymodel);
-kp=(0.34*T)/(k*tau);
-Ti=T;
-ki=kp/Ti;
-      
-      Tutaj wstaw swój tekst, który chcesz, żeby użytkownik skopiował.
-Może to być dowolny opis, kod, instrukcja, itp.
     </textarea>
+
     <button onclick="skopiuj()">Kopiuj</button>
   </div>
 
-  <script>
-    function skopiuj() {
-      const pole = document.getElementById("tekst");
-      pole.select();
-      document.execCommand("copy");
-      alert("Tekst został skopiowany!");
-    }
-  </script>
+  <!-- PRAWA KOLUMNA -->
+  <div class="column">
+    <h2>Opis / Informacje</h2>
+
+    <p>
+    TUTAJ_WKLEJ_SWOJ_OPIS_LUB_DODATKOWY_TEKST
+      spoko nie ma problemu
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+function skopiuj() {
+  const pole = document.getElementById("tekst");
+  pole.select();
+  document.execCommand("copy");
+  alert("Tekst został skopiowany!");
+}
+</script>
+
 </body>
 </html>
