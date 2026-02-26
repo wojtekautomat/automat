@@ -85,45 +85,6 @@ button:hover {
 
     <textarea id="tekst" readonly>
 
-
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <title>automatyka.kia</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f9f9f9;
-    }
-    .box {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      height: 150px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>sprawozdania</h1>
-    <textarea id="tekst" readonly>
-
-
       Zadanie A – Wiersz poleceń Windows
 U:
 cd \
@@ -290,23 +251,7 @@ plot(t,y,t,ymodel);
 kp=(0.34*T)/(k*tau);
 Ti=T;
 ki=kp/Ti;
-      
-      Tutaj wstaw swój tekst, który chcesz, żeby użytkownik skopiował.
-Może to być dowolny opis, kod, instrukcja, itp.
-    </textarea>
-    <button onclick="skopiuj()">Kopiuj</button>
-  </div>
 
-  <script>
-    function skopiuj() {
-      const pole = document.getElementById("tekst");
-      pole.select();
-      document.execCommand("copy");
-      alert("Tekst został skopiowany!");
-    }
-  </script>
-</body>
-</html>
 
 
     </textarea>
